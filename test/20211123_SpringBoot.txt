@@ -1,0 +1,154 @@
+String Boot 프로젝트 생성
+1. File => New => Spring Starter Project
+2. Name : 프로젝트명
+   Type : 라이브러리 관리 선택(Maven / Gradle(
+   Packaging : 프로젝트 배포 형태 (jar / war : 단, Spring boot는 jar도 웹 형태로 배포 가능)
+   Java Version : 설치되어 있는 자바 버전 선택
+   Language : 작업할 언어 선택
+
+   Group : 프로젝트 관리 단체/회사(도메인 역순)
+   Artifact : 프로젝트 명
+   Version : 프로젝트 버전 (추부 버전업되었을 때, 기존 프로젝트 삭제할 것인지 업데이트할 것인지를 결정하는 요인)
+   Description : 프로젝트에 대한 간단한 설정
+   Package : 프로젝트에 대한 기본 패키지(단, Packaging 작업과는 다른 의미)
+
+Spring Boot 프로젝트 구조
+1. src/main/java : Java 기반 파일
+
+2. src/main/resources : 설정 관련 파일
+
+3. src/test/java : 테스트 관련(Junit을 이용)
+
+4. src => main : View 관련 파일
+        => test
+=============================================================================
+http://localhost:9000/hello?name=encore
+
+@Controller
+요청에 따라 호출되는 메서드가 String 타입을 리턴할 경우, 
+문자열.jsp와 같은 View파일이 있어야 한다.
+
+@RestController : Spring V4 이상
+요청에 따라 호출되는 메서드가 String 타입을 리턴할 경우,
+해당 문자열을 브라우저로 바로 리턴할 수 있다.
+따라서 별도의 View 파일이 필요없다.
+
+=============================================================================
+lombok.jar 라이브러리 역할:
+private 변수에 대한 getter/setter/toString 과 같은 메서드 자동 생성
+
+@Getter : getter 메서드 생성
+@Setter : setter 메서드 생성
+@ToString : toString 메서드 생성
+@RequiredArgsConstructor : 모든 private 변수에 대한 값을 초기화 할 수 있는 생성자 생성
+@EqulsAndHashCode : equals() 와 hashCode() 메서드 생성
+@Data : 위의 5가지 기능
+
+=============================================================================
+Junit을 이용한 단위 테스트
+=> src/test/main 에서 사용
+=> Junit Test로 실행
+
+Junit을 이용한 단위 테스트 사용 이유
+1. 특정 메서드에 대한 작동 여부 검증
+2. 모든 메서드에 대한 단위(모듈) 테스트
+
+Junit : Java
+DBunit : DB
+PyUnit : Python
+
+장점 :
+1. 설계한 코드에 대한 동작여부를 미리 테스트함으로써, 실제 코드에 대한 오류 방지
+2. Web 프로젝트일 경우, 서버의 재구동 없이 바로 테스트 가능
+3. 기존 코드 변경 시, 변경할 부분을 미리 테스트하여 변경된 코드가 실제 프로젝트에 어떤 영향을 미치는지 파악이 용이
+
+Junit 5 사용환경
+1. Java 8 이상
+2. Spring boot 2.2.0 이상
+
+Junit 5 제공 내용
+1. JUnit Platform : JVM 기반 테스트 프레임워크를 실행시키기 위한 모듈
+2. JUnit Jupiter : JUnit 5을 테스트하고 확장 모델을 지원하기 위한 모듈
+3. JUnit Vintage : JUnit 3 / JUnit 4 기반 테스트를 JUnit Platform에서 실행시키기 위한 TestEngine을 제공하는 모듈
+
+JUnit 5 어노테이션 종류
+1. @DiaplayName("이름") : 테스트 이름 설정(여러 메서드 테스트 시, 확인(식별)용)
+2. @Disable : 테스트 건너뛰기
+3. @Nested : 중첩 클래스 테스트
+4. @RepeatedTest : 반복횟수
+
+5. @TestMethodOrder(OrderAnnotation의 상수) : 테스트 실행 순서 설정
+   @Order(순서)
+
+6. @ExtendWith(확장클래스.class) : 확장 기능 구현
+   예) @ExtendWith(DisabledOnOsCondition.class)
+
+7. 테스트 메서드
+@Test : 가장 기본적인 테스트
+@RepeatedTest : 반복 테스트
+@ParameterizedTest : 파라미터가 있는 메서드 테스트
+@TestFactory : 동적 테스트 생성 시
+
+8. 매개변수 지정
+@ParameterizedTest
+@ValueSource(데이터타입 = {데이터, 데이터, 데이터 ...})
+@NullSource / @EmptySource : null / isEmpty() 테스트
+@NullAndEmptySource : null, empty 제공
+
+9. 라이프 사이클 관련
+@BeforeAll    : 테스트 클래스 기준으로 테스트 메서드들이 실행되기 전에 (단, 메서드는 static)
+@BeforeEach : 각 테스트 메서드가 실행되기 전.
+@AfterAll      : 테스트 클래스 기준으로 테스트 메서드들이 실행된 후에 (단, 메서드는 static)
+@AfterEach   :  각 테스트 메서드가 실행된 후.
+
+10. 테스트 수행시간 제어
+@Timeout(ms시간) : 제한 시간 안에 메서드가 종료되지 않으면 예외 발생(TimeoutException)
+
+=============================================================================
+Mock : 웹 구조 테스트
+MockMvc
+HttpServletRequest :
+	HTTP Method : GET/POST
+	Request URL : /hello
+	Parameters : name=dddd
+	Headers :
+	Body :
+	Session attrs
+
+Handler
+	Type :
+	Method :
+
+Async
+	Async Started :
+	Async result
+
+Resolved Exception
+	Type
+
+ModelAndView
+	View Name
+	View
+	Model
+
+HttpServletResponse
+	Status : 200 / 404 / 500
+	Error Page
+	Error Message
+	Content Type
+	Body
+	Forwarded URL
+	Redirect URL
+	Cookies
+
+
+
+
+
+
+
+
+
+
+
+
