@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Sample6</title>
+</head>
+<body>
+	<table border="1" th:inline="text">
+		<tr><th>ID</th><th>NAME</th><th>REGDATE</th></tr>
+		
+		<tr th:each="member : ${list}">
+			<td>[[${member.mid}]]</td>
+			<td>[[${member.mname}]]</td>
+			<td>[[${member.regdate}]]</td>
+		</tr>
+	</table>
+	
+	<div>[[${result}]]</div>
+	<div>[[${#vars.result}]]</div> <!-- 아래 javascript 변수값 -->
+	
+	<script th:inline="javascript">
+		var result = [[${result}]];
+	</script>
+</body>
+</html>
