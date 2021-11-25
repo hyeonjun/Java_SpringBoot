@@ -6,3 +6,5 @@ Java 8
 Oracle 10g
 
 STS4
+
+Thymeleaf
