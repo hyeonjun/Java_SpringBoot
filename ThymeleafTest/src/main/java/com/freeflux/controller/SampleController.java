@@ -8,9 +8,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.freeflux.domain.MemberVO;
 
 @Controller
+@RequestMapping("/sample")
 public class SampleController {
 	@GetMapping("/sample1")
 	public void sample1(Model model) {
@@ -73,6 +76,12 @@ public class SampleController {
 	// Thymleaf 객체를 이용한 링크 : sample8.html => @{링크주소}
 	@GetMapping("/sample8")
 	public void sample8(Model model) {}
+	
+	// 다중 매핑 : {"/요청", "/요청", "/요청"}
+	@GetMapping({"/exLayout1", "/exLayout2", "/exTemplate", "/exSideBar" })
+	public void multiMapping() {
+		
+	}
 
 }
 

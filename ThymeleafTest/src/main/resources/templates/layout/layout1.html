@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="setContent(content)">
+	<head>
+		<meta charset="UTF-8">
+		<title>1ayout1.html : exTemplate.html로부터 전달받는 파일</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.headers {
+				width: 100vw;
+				height: 20vh;
+				background-color: aqua;
+			}
+			
+			.contents {
+				width: 100vw;
+				height: 70vh;
+				background-color: lightgray;
+			}
+			
+			.footers {
+				width: 100vw;
+				height: 10vh;
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="headers">
+			<h1>HEADER</h1>
+		</div>
+		
+		<div class="contents">
+			<th:block th:replace="${content}"></th:block>
+		</div>
+		
+		<div class="footer">
+			<h1>FOOTER</h1>
+		</div>
+		
+	</body>
+</th:block>
+</html>

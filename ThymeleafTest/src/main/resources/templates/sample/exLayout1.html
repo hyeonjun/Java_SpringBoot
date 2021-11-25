@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>exLayout1</title>
+</head>
+<body>
+	<div>
+		<!-- 외부 파일 내용이 들어올 위치 : fragment2.html -->
+		<th:block th:replace="~{/fragments/fragment2}"></th:block>
+	</div>
+
+	<h2>fragment 1의 Part1</h2>
+	<div th:replace="~{/fragments/fragment1 :: part1}"></div>
+	
+</body>
+</html>

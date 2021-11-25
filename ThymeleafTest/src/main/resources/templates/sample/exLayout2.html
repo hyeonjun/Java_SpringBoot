@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- exLayout2.html이 내용을 fragment3.html에게 전달하여 대체시키는 방식  -->
+<th:block th:replace="~{/fragments/fragment3 :: target(~{this::#ulFirst}, ~{this::#ulSecond})}">
+	<ul id="ulFirst">
+		<li>AAA</li>
+		<li>BBB</li>
+		<li>CCC</li>
+	</ul>
+	
+	<ul id="ulSecond">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+</th:block>
+</html>

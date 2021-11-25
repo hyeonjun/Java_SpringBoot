@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout1 :: setContent(~{this::content})}">
+	<th:block th:fragment="content">
+		<h1>exTemplate가 layout1에게 데이터 전달</h1>
+	</th:block>
+</th:block>
+</html>
